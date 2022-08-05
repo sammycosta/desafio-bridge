@@ -13,7 +13,7 @@ public class NumbersRepositoryTests {
 	private NumbersRepository numbersRepository;
 	
 	@Test
-	public void inserir() {
+	public void insert() {
 		Numbers number = new Numbers(Integer.valueOf(5));
 		number.CalculateResultNumber();
 		numbersRepository.save(number);
