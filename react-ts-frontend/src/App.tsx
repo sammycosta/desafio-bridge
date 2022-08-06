@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <nav className="navbar bg-dark fixed-top">
+      <nav className="navbar bg-dark fixed-top shadow-lg">
         <div className="container-fluid">
           <a className="navbar-brand text-white mx-auto" href="#">Calculadora #DesafioBridge</a>
           <span className="navbar-text text-white mx-auto">

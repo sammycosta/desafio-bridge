@@ -18,7 +18,7 @@ class TableResult extends React.Component<{}, Table> {
     this.state = {
       rows: [],
       page: 0,
-      rowsPerPage: 5
+      rowsPerPage: 3
     }
 
     this.handleChangePage = this.handleChangePage.bind(this);
@@ -69,13 +69,14 @@ class TableResult extends React.Component<{}, Table> {
           </TableBody>
         </Table>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 15]}
+          rowsPerPageOptions={[3, 5, 10]}
           component="div"
           count={this.state.rows.length}
           rowsPerPage={this.state.rowsPerPage}
           page={this.state.page}
           onPageChange={this.handleChangePage}
           onRowsPerPageChange={this.handleChangeRowsPerPage}
+          labelRowsPerPage="Resultados por página:"
         />
       </div>)
   }
