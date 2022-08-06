@@ -53,12 +53,11 @@ class TableResult extends React.Component<{}, Table> {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Primeiro Número</TableCell>
-              <TableCell>Resultado</TableCell>
-              <TableCell>Tempo de Cálculo</TableCell>
+              <TableCell><strong>Primeiro Número</strong></TableCell>
+              <TableCell><strong>Resultado</strong></TableCell>
+              <TableCell><strong>Tempo de Cálculo</strong></TableCell>
             </TableRow>
           </TableHead>
-
           <TableBody>
             {this.state.rows.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((row, i) => (
               <TableRow key={i}>
