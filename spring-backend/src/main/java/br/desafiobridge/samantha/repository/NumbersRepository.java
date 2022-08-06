@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.desafiobridge.samantha.domain.Numbers;
 
 @Repository
-public interface NumbersRepository extends JpaRepository<Numbers, Integer>{
+public interface NumbersRepository extends JpaRepository<Numbers, Long>{
 
 }

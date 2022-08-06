@@ -2,12 +2,26 @@ package br.desafiobridge.samantha.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Numbers")
 public class Numbers {
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column
+	private int inputNumber;
+	
+	@Column
+	private int resultNumber;
+	
+	@Column
+	private long calculationTime;
 	
 	public Numbers() {
 	}
@@ -16,13 +30,6 @@ public class Numbers {
 		this.inputNumber = inputNumber;
 	}
 	
-	@Id
-	private int inputNumber;
-	
-	@Column
-	private int resultNumber;
-	
-	private long calculationTime;
 	
 	public int CalculateResultNumber() {
 		int auxiliar = 0;
@@ -72,6 +79,14 @@ public class Numbers {
 
 	public void setCalculationTime(long calculationTime) {
 		this.calculationTime = calculationTime;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
 
