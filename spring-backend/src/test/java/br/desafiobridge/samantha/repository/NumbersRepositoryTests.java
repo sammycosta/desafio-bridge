@@ -14,7 +14,7 @@ public class NumbersRepositoryTests {
 	
 	@Test
 	public void insert() {
-		Numbers number = new Numbers(Integer.valueOf(5));
+		Numbers number = new Numbers(10);
 		number.CalculateResultNumber();
 		numbersRepository.save(number);
 	}

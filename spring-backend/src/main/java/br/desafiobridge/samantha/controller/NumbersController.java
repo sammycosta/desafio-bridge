@@ -3,6 +3,7 @@ package br.desafiobridge.samantha.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,11 @@ public class NumbersController {
 	
 	@PostMapping
 	public Numbers insertNumber(@RequestBody Numbers newNumbers) {
+		StopWatch timeMeasure = new StopWatch();
+		timeMeasure.start("calculationTime");
 		newNumbers.CalculateResultNumber();
+		timeMeasure.stop();
+		newNumbers.setCalculationTime(timeMeasure.getLastTaskTimeNanos());
 		numbersRepository.save(newNumbers);
 		return newNumbers;
 	}

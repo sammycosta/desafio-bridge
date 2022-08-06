@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class NumbersTests {
 	@Test
 	public void TestOne() {
-		Numbers number = new Numbers(Integer.valueOf(5));
-		Integer resultNumber = number.CalculateResultNumber();
-		assertThat(resultNumber).isEqualTo(Integer.valueOf(1));
+		Numbers number = new Numbers(5);
+		int resultNumber = number.CalculateResultNumber();
+		assertThat(resultNumber).isEqualTo(1);
 	}
 }

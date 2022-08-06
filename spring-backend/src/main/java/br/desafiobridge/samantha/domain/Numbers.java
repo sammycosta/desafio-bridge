@@ -12,21 +12,23 @@ public class Numbers {
 	public Numbers() {
 	}
 	
-	public Numbers(Integer inputNumber) {
+	public Numbers(int inputNumber) {
 		this.inputNumber = inputNumber;
 	}
 	
 	@Id
-	private Integer inputNumber;
+	private int inputNumber;
 	
 	@Column
-	private Integer resultNumber;
+	private int resultNumber;
 	
-	public Integer CalculateResultNumber() {
-		Integer auxiliar = 0;
-		for(int n = 2; n < this.inputNumber; n = n+2 ) {
-			Integer numberDivisorsOne = CalculatePositiveDivisors(n);
-			Integer numberDivisorsTwo = CalculatePositiveDivisors(n+1);
+	private long calculationTime;
+	
+	public int CalculateResultNumber() {
+		int auxiliar = 0;
+		for(int n = 2; n < this.inputNumber; n++ ) {
+			int numberDivisorsOne = CalculatePositiveDivisors(n);
+			int numberDivisorsTwo = CalculatePositiveDivisors(n+1);
 			
 			if(numberDivisorsOne == numberDivisorsTwo) {
 				auxiliar++;
@@ -36,8 +38,8 @@ public class Numbers {
 		return auxiliar;
 	}
 	
-	private Integer CalculatePositiveDivisors(Integer n) {
-		Integer auxiliar = 0;
+	private int CalculatePositiveDivisors(int n) {
+		int auxiliar = 0;
         for (int i = 1; i <= Math.sqrt(n); i++)
         {
             if (n % i == 0) {
@@ -51,17 +53,25 @@ public class Numbers {
         }
 		return auxiliar;
 	}
-	public Integer getInputNumber() {
+	public int getInputNumber() {
 		return inputNumber;
 	}
-	public void setInputNumber(Integer inputNumber) {
+	public void setInputNumber(int inputNumber) {
 		this.inputNumber = inputNumber;
 	}
-	public Integer getResultNumber() {
+	public int getResultNumber() {
 		return resultNumber;
 	}
-	public void setResultNumber(Integer resultNumber) {
+	public void setResultNumber(int resultNumber) {
 		this.resultNumber = resultNumber;
+	}
+
+	public long getCalculationTime() {
+		return calculationTime;
+	}
+
+	public void setCalculationTime(long calculationTime) {
+		this.calculationTime = calculationTime;
 	}
 }
 
