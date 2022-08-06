@@ -3,8 +3,9 @@ import React from 'react'
 import NumbersService from '../services/NumbersService'
 
 type TableNumbers = {
-  inputNumber: string
-  resultNumber: string
+  inputNumber: string,
+  resultNumber: string,
+  calculationTime: string
 }
 interface Table {
   rows: Array<TableNumbers>,
@@ -54,6 +55,7 @@ class TableResult extends React.Component<{}, Table> {
             <TableRow>
               <TableCell>Primeiro Número</TableCell>
               <TableCell>Resultado</TableCell>
+              <TableCell>Tempo de Cálculo</TableCell>
             </TableRow>
           </TableHead>
 
@@ -62,6 +64,7 @@ class TableResult extends React.Component<{}, Table> {
               <TableRow key={i}>
                 <TableCell>{row.inputNumber}</TableCell>
                 <TableCell>{row.resultNumber}</TableCell>
+                <TableCell>{row.calculationTime} ns</TableCell>
               </TableRow>
             ))}
           </TableBody>
