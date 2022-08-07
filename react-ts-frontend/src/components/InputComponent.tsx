@@ -62,7 +62,7 @@ class InputComponent extends React.Component<{}, Numbers> {
               <strong>Resultado:</strong> {this.state.resultNumber} |
             </span>
             <span className="card-text mt-0">
-              <strong>Tempo de Cálculo:</strong> {this.state.calculationTime} ns <em>**Não inclui tempo de operações em banco de dados</em>
+              <strong> Tempo de Cálculo:</strong> {this.state.calculationTime} ns <em>**Não inclui tempo de operações em banco de dados</em>
             </span>
           </>
         )}
