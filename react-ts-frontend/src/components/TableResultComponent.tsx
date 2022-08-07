@@ -20,7 +20,6 @@ class TableResult extends React.Component<{}, Table> {
       page: 0,
       rowsPerPage: 3
     }
-
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
   }
