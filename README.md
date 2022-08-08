@@ -50,3 +50,9 @@ yarn install
 yarn dev
 ```
 O link da port aparecerá no terminal.
+
+## Aplicação
+Imagens da aplicação em funcionamento
+![entire page](/imgs/screen1.png)
+![validation 2](/imgs/screen2.png)
+![validation 3](/imgs/screen3.png)
