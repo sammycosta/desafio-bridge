@@ -17,12 +17,16 @@ Utiliza: Java, Yarn, Node.js, React.js, Vite, Maven, MySQL
 
 `git clone https://github.com/sammycosta/desafio-bridge.git`
 ### 1º passo: Banco de Dados
-É necessário que você possua um Banco de Dados/Schema MySQL de nome desafio-bridge. Crie da forma que preferir, o metódo utilizado no desenvolvimento foi a partir do MySQL Workbench ([Tutorial 1](https://www.alura.com.br/artigos/mysql-do-download-e-instalacao-ate-sua-primeira-tabela)/[Tutorial 2](https://www.mysqltutorial.org/install-mysql-ubuntu/))
+É necessário que você possua um Banco de Dados/Schema MySQL de nome desafio_bridge. Crie da forma que preferir, o metódo utilizado no desenvolvimento foi a partir do MySQL Workbench ([Tutorial 1](https://www.alura.com.br/artigos/mysql-do-download-e-instalacao-ate-sua-primeira-tabela)/[Tutorial 2](https://www.mysqltutorial.org/install-mysql-ubuntu/))  
+Via command line, possuindo MySQL:  
+`sudo mysql -u root -p`  
+Digitar senha  
+`CREATE DATABASE desafio_bridge;`
 
 A alteração das informações necessárias pode ser feita no arquivo 
 `spring-backend/src/main/resources/application.properties`
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/desafio-bridge
+spring.datasource.url=jdbc:mysql://localhost:3306/desafio_bridge
 spring.datasource.username=root
 spring.datasource.password=password
 ```
