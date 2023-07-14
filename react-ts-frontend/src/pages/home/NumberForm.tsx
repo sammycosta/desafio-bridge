@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
-import { addNumbers } from '../services/NumbersService'
+import { addNumbers } from '../../services/NumbersService'
 
-interface Numbers {
-  inputNumber: string
-  resultNumber: string
-  calculationTime: string
-}
-
-export default function InputComponent() {
+export default function NumberForm() {
   const [inputNumber, setInputNumber] = useState('')
   const [resultNumber, setResultNumber] = useState('')
   const [calculationTime, setCalculationTime] = useState('')
@@ -50,7 +44,7 @@ export default function InputComponent() {
             <strong>Resultado:</strong> {resultNumber} |
           </span>
           <span className='card-text mt-0'>
-            <strong> Tempo de Cálculo:</strong> {calculationTime} ns
+            <strong>Tempo de Cálculo:</strong> {calculationTime} ns
             <em>**Não inclui tempo de operações em banco de dados</em>
           </span>
         </>

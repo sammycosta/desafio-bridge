@@ -1,18 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TablePagination, TableRow } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { getNumbers } from '../services/NumbersService'
-
-type TableNumbers = {
-  inputNumber: string
-  resultNumber: string
-  calculationTime: string
-}
-
-interface Table {
-  rows: Array<TableNumbers>
-  page: number
-  rowsPerPage: number
-}
+import { getNumbers } from '../../services/NumbersService'
+import { TableNumbers } from './model'
 
 export default function TableResult() {
   const [rows, setRows] = useState<TableNumbers[]>([])
@@ -62,9 +51,9 @@ export default function TableResult() {
         count={rows.length}
         rowsPerPage={rowsPerPage}
         page={page}
+        labelRowsPerPage='Resultados por página:'
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
-        labelRowsPerPage='Resultados por página:'
       />
     </div>
   )
