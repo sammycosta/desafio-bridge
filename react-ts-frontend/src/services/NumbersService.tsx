@@ -1,19 +1,11 @@
 import axios from 'axios'
 
-const SERVICE_BASE_URL = "http://localhost:8080/api"
+const SERVICE_BASE_URL = 'http://localhost:8080/api'
 
 interface numberInput {
   inputNumber: number
 }
 
-class NumbersService {
+export const getNumbers = () => axios.get(SERVICE_BASE_URL)
 
-  getNumbers() {
-    return axios.get(SERVICE_BASE_URL)
-  }
-
-  addNumbers(number: numberInput) {
-    return axios.post(SERVICE_BASE_URL, (number))
-  }
-
-} export default new NumbersService()
+export const addNumbers = (number: numberInput) => axios.post(SERVICE_BASE_URL, number)

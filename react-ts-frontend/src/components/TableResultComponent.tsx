@@ -1,82 +1,71 @@
 import { Table, TableBody, TableCell, TableHead, TablePagination, TableRow } from '@mui/material'
-import React from 'react'
-import NumbersService from '../services/NumbersService'
+import { useEffect, useState } from 'react'
+import { getNumbers } from '../services/NumbersService'
 
 type TableNumbers = {
-  inputNumber: string,
-  resultNumber: string,
+  inputNumber: string
+  resultNumber: string
   calculationTime: string
 }
+
 interface Table {
-  rows: Array<TableNumbers>,
-  page: number,
+  rows: Array<TableNumbers>
+  page: number
   rowsPerPage: number
 }
-class TableResult extends React.Component<{}, Table> {
-  constructor(props: {}) {
-    super(props)
-    this.state = {
-      rows: [],
-      page: 0,
-      rowsPerPage: 3
-    }
-    this.handleChangePage = this.handleChangePage.bind(this);
-    this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
+
+export default function TableResult() {
+  const [rows, setRows] = useState<TableNumbers[]>([])
+  const [page, setPage] = useState(0)
+  const [rowsPerPage, setRowsPerPage] = useState(3)
+
+  const handleChangePage = (event: unknown, newPage: number) => setPage(newPage)
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10))
+    setPage(0)
   }
 
-  componentDidMount() {
-    NumbersService.getNumbers().then(
-      (response) => {
-        this.setState({ rows: response.data })
-      })
-  }
+  useEffect(() => {
+    getNumbers().then((response) => setRows(response.data.reverse()))
+  }, [])
 
-  componentDidUpdate() {
-    NumbersService.getNumbers().then(
-      (response) => {
-        this.setState({ rows: response.data.reverse() })
-      })
-  }
-
-  handleChangePage = (event: unknown, newPage: number) => {
-    this.setState({ page: newPage })
-  }
-
-  handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ rowsPerPage: parseInt(event.target.value, 10), page: 0 })
-  }
-
-  render() {
-    return (
-      <div>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell><strong>Primeiro Número</strong></TableCell>
-              <TableCell><strong>Resultado</strong></TableCell>
-              <TableCell><strong>Tempo de Cálculo</strong></TableCell>
+  return (
+    <div>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              <strong>Primeiro Número</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Resultado</strong>
+            </TableCell>
+            <TableCell>
+              <strong>Tempo de Cálculo</strong>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, i) => (
+            <TableRow key={i}>
+              <TableCell>{row.inputNumber}</TableCell>
+              <TableCell>{row.resultNumber}</TableCell>
+              <TableCell>{row.calculationTime} ns</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.state.rows.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map((row, i) => (
-              <TableRow key={i}>
-                <TableCell>{row.inputNumber}</TableCell>
-                <TableCell>{row.resultNumber}</TableCell>
-                <TableCell>{row.calculationTime} ns</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        <TablePagination
-          rowsPerPageOptions={[3, 5, 10]}
-          component="div"
-          count={this.state.rows.length}
-          rowsPerPage={this.state.rowsPerPage}
-          page={this.state.page}
-          onPageChange={this.handleChangePage}
-          onRowsPerPageChange={this.handleChangeRowsPerPage}
-          labelRowsPerPage="Resultados por página:"
-        />
-      </div>)
-  }
-} export default TableResult
+          ))}
+        </TableBody>
+      </Table>
+      <TablePagination
+        rowsPerPageOptions={[3, 5, 10]}
+        component='div'
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage='Resultados por página:'
+      />
+    </div>
+  )
+}
