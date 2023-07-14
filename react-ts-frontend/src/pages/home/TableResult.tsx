@@ -1,10 +1,8 @@
 import { Table, TableBody, TableCell, TableHead, TablePagination, TableRow } from '@mui/material'
-import { useEffect, useState } from 'react'
-import { getNumbers } from '../../services/NumbersService'
+import { useState } from 'react'
 import { TableNumbers } from './model'
 
-export default function TableResult() {
-  const [rows, setRows] = useState<TableNumbers[]>([])
+export default function TableResult({ rows }: { rows: TableNumbers[] }) {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(3)
 
@@ -14,10 +12,6 @@ export default function TableResult() {
     setRowsPerPage(parseInt(event.target.value, 10))
     setPage(0)
   }
-
-  useEffect(() => {
-    getNumbers().then((response) => setRows(response.data.reverse()))
-  }, [])
 
   return (
     <div>

@@ -1,7 +1,22 @@
+import { useEffect, useState } from 'react'
+import { getNumbers } from '../../services/NumbersService'
 import NumberForm from './NumberForm'
 import TableResult from './TableResult'
+import { TableNumbers } from './model'
 
 export default function Home() {
+  const [rows, setRows] = useState<TableNumbers[]>([])
+
+  const loadNumbers = () =>
+    getNumbers().then((response) => {
+      console.log(response.data)
+      setRows(response.data.reverse())
+    })
+
+  useEffect(() => {
+    loadNumbers()
+  }, [])
+
   return (
     <>
       <nav className='navbar bg-dark fixed-top shadow-lg'>
@@ -17,8 +32,8 @@ export default function Home() {
           Insira um número inteiro k. O resultado será <strong>o número de inteiros positivos n menores que k</strong>,
           para os quais <strong>n e n + 1 têm o mesmo número de divisores positivos. </strong>
         </span>
-        <NumberForm />
-        <TableResult />
+        <NumberForm onSubmit={loadNumbers} />
+        <TableResult rows={rows} />
       </div>
     </>
   )

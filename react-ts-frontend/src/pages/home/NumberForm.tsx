@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { addNumbers } from '../../services/NumbersService'
 
-export default function NumberForm() {
+export default function NumberForm({ onSubmit }: { onSubmit: () => void }) {
   const [inputNumber, setInputNumber] = useState('')
   const [resultNumber, setResultNumber] = useState('')
   const [calculationTime, setCalculationTime] = useState('')
@@ -13,11 +13,12 @@ export default function NumberForm() {
 
   const saveNumber = (event: any) => {
     event.preventDefault()
-    const data = { inputNumber: parseInt(inputNumber) }
+    const data = { number: parseInt(inputNumber) }
     addNumbers(data).then((response) => {
       setInputNumber('')
       setResultNumber(response.data.resultNumber.toString())
       setCalculationTime(response.data.calculationTime.toString())
+      onSubmit()
     })
   }
 
@@ -41,10 +42,10 @@ export default function NumberForm() {
       {resultNumber.length > 0 && (
         <>
           <span className='card-text mt-0'>
-            <strong>Resultado:</strong> {resultNumber} |
+            <strong>Resultado:</strong> {resultNumber} | &nbsp;
           </span>
           <span className='card-text mt-0'>
-            <strong>Tempo de Cálculo:</strong> {calculationTime} ns
+            <strong>Tempo de Cálculo:</strong> {calculationTime} ns <br />
             <em>**Não inclui tempo de operações em banco de dados</em>
           </span>
         </>

@@ -3,7 +3,7 @@ import axios from 'axios'
 const SERVICE_BASE_URL = 'http://localhost:8080/api'
 
 interface numberInput {
-  inputNumber: number
+  number: number
 }
 
 export const getNumbers = () => axios.get(SERVICE_BASE_URL)

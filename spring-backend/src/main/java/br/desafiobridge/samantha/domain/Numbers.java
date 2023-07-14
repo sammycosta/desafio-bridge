@@ -1,5 +1,10 @@
 package br.desafiobridge.samantha.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,84 +14,23 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Numbers")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Numbers {
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column
-	private int inputNumber;
+	private Integer inputNumber;
 	
 	@Column
-	private int resultNumber;
+	private Integer resultNumber;
 	
 	@Column
-	private long calculationTime;
-	
-	public Numbers() {
-	}
-	
-	public Numbers(int inputNumber) {
-		this.inputNumber = inputNumber;
-	}
-	
-	
-	public int CalculateResultNumber() {
-		int auxiliar = 0;
-		for(int n = 2; n < this.inputNumber; n++ ) {
-			int numberDivisorsOne = CalculatePositiveDivisors(n);
-			int numberDivisorsTwo = CalculatePositiveDivisors(n+1);
-			
-			if(numberDivisorsOne == numberDivisorsTwo) {
-				auxiliar++;
-			}
-		}
-		setResultNumber(auxiliar);
-		return auxiliar;
-	}
-	
-	private int CalculatePositiveDivisors(int n) {
-		int auxiliar = 0;
-        for (int i = 1; i <= Math.sqrt(n); i++)
-        {
-            if (n % i == 0) {
-                // If divisors are equal,
-                // count only one
-                if (n / i == i)
-                    auxiliar++;
-                else // Otherwise count both
-                    auxiliar = auxiliar + 2;
-            }
-        }
-		return auxiliar;
-	}
-	public int getInputNumber() {
-		return inputNumber;
-	}
-	public void setInputNumber(int inputNumber) {
-		this.inputNumber = inputNumber;
-	}
-	public int getResultNumber() {
-		return resultNumber;
-	}
-	public void setResultNumber(int resultNumber) {
-		this.resultNumber = resultNumber;
-	}
+	private Long calculationTime;
 
-	public long getCalculationTime() {
-		return calculationTime;
-	}
-
-	public void setCalculationTime(long calculationTime) {
-		this.calculationTime = calculationTime;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 }
 
